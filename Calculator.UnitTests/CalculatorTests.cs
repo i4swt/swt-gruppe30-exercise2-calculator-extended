@@ -7,7 +7,7 @@ namespace Calculator.UnitTests
     {
         //One way to use [TestCase]
         [Test]
-        [TestCase(1,3, ExpectedResult = 4)]
+        [TestCase(1,4, ExpectedResult = 4)]
         [TestCase(-1,3, ExpectedResult = 2)]
         [TestCase(-100.1,300, ExpectedResult = 199.9)]
         [TestCase(0,0, ExpectedResult = 0)]
