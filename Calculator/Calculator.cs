@@ -23,5 +23,19 @@ namespace Calculator
         {
             return a * b;
         }
+
+        public static double Accumulator { get; private set; }
+
+        public static double Add(double addend)
+        {
+            Accumulator += Accumulator;
+            return addend + Accumulator;
+        }
+
+        public static void Clear()
+        {
+            Accumulator = 0;
+        }
+
     }
 }
