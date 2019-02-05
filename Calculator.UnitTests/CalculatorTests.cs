@@ -5,6 +5,13 @@ namespace Calculator.UnitTests
     [TestFixture]
     public class CalculatorTests
     {
+        [SetUp]
+        public void SetUp()
+        {
+            Calculator.Clear();
+        }
+
+
         //One way to use [TestCase]
         [Test]
         [TestCase(1,1, ExpectedResult = 2)]
@@ -24,9 +31,9 @@ namespace Calculator.UnitTests
         [TestCase(0.5,-0.5,1)]
         [TestCase(-1,-1,0)]
         [TestCase(-2,1,-3)]
-        public void Substract_WhenCalled_ReturnsBSubstractedFromA(double a, double b, double expectedResult)
+        public void Subtract_WhenCalled_ReturnsBSubtractedFromA(double a, double b, double expectedResult)
         {
-            var result = Calculator.Substract(a, b);
+            var result = Calculator.Subtract(a, b);
             Assert.That(result,Is.EqualTo(expectedResult));
         }
 
@@ -70,6 +77,24 @@ namespace Calculator.UnitTests
         {
             var result = Calculator.Multiply(0, 2);
             Assert.That(result,Is.EqualTo(0));
+        }
+
+        [Test]
+        [TestCase(1, ExpectedResult = -1)]
+        public double Subtract_WhenCalledWithOneInput_StoresResultInAccumulator(double a)
+        {
+            Calculator.Subtract(a);
+            return Calculator.Accumulator;
+        }
+
+        [Test]
+        [TestCase(1, ExpectedResult = -3)]
+        public double Subtract_WhenCalledWithOneInputRepeatedly_StoresResultInAccumulator(double a)
+        {
+            Calculator.Subtract(a);
+            Calculator.Subtract(a);
+            Calculator.Subtract(a);
+            return Calculator.Accumulator;
         }
     }
 }

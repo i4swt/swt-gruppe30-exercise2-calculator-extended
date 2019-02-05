@@ -9,7 +9,7 @@ namespace Calculator
             return a + b;
         }
 
-        public static double Substract(double a, double b)
+        public static double Subtract(double a, double b)
         {
             return a - b;
         }
@@ -32,9 +32,9 @@ namespace Calculator
             return Accumulator;
         }
 
-        public static double Substract(double substractor)
+        public static double Subtract(double subtractor)
         {
-            Accumulator -= substractor;
+            Accumulator -= subtractor;
             return Accumulator;
         }
 
