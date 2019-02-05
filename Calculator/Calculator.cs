@@ -32,6 +32,12 @@ namespace Calculator
             return Accumulator;
         }
 
+        public static double Substract(double substractor)
+        {
+            Accumulator -= substractor;
+            return Accumulator;
+        }
+
         public static void Clear()
         {
             Accumulator = 0;
