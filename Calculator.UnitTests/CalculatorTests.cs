@@ -123,5 +123,17 @@ namespace Calculator.UnitTests
             return _uut.Accumulator;
         }
 
+        [Test]
+        [TestCase(5, 2, ExpectedResult = 0)]
+        [TestCase(-10, 2, ExpectedResult = 0)]
+        [TestCase(-15, -6, ExpectedResult = 0)]
+        public double Clear_CalledOnMultipleCalculations_AccumulatorIsZero(double a, double b)
+        {
+            _uut.Subtract(a);
+            _uut.Add(b);
+            _uut.Clear();
+            return _uut.Accumulator;
+        }
+
     }
 }
