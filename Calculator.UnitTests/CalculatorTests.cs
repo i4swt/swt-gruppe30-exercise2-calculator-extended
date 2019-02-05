@@ -5,10 +5,11 @@ namespace Calculator.UnitTests
     [TestFixture]
     public class CalculatorTests
     {
+        private Calculator _uut;
         [SetUp]
         public void SetUp()
         {
-            Calculator.Clear();
+            _uut = new Calculator();
         }
 
 
@@ -21,7 +22,7 @@ namespace Calculator.UnitTests
         [TestCase(-1,-1, ExpectedResult = -2)]
         public double Add_WhenCalled_ReturnsTheSumOfTheTwoInputs(double a, double b)
         {
-            return Calculator.Add(a, b);
+            return _uut.Add(a, b);
         }
 
         [Test]
@@ -30,9 +31,9 @@ namespace Calculator.UnitTests
         [TestCase(-5, ExpectedResult = -5)]
         public double Add_OverloadedSoAccumulatorReturnsSameAsAddInput_AccumulatorReturnsResult(double a)
         {
-            Calculator.Clear();
-            Calculator.Add(a);
-            return Calculator.Accumulator;
+        
+            _uut.Add(a);
+            return _uut.Accumulator;
         }
 
         [Test]
@@ -41,10 +42,9 @@ namespace Calculator.UnitTests
         [TestCase(-5, ExpectedResult = -10)]
         public double Add_AddsInputTwiceToTestAccumulation_ReturnsAccumulatedSum(double a)
         {
-            Calculator.Clear();
-            Calculator.Add(a);
-            Calculator.Add(a);
-            return Calculator.Accumulator;
+            _uut.Add(a);
+            _uut.Add(a);
+            return _uut.Accumulator;
         }
 
 
@@ -58,7 +58,7 @@ namespace Calculator.UnitTests
         [TestCase(-2,1,-3)]
         public void Subtract_WhenCalled_ReturnsBSubtractedFromA(double a, double b, double expectedResult)
         {
-            var result = Calculator.Subtract(a, b);
+            var result = _uut.Subtract(a, b);
             Assert.That(result,Is.EqualTo(expectedResult));
         }
 
@@ -72,35 +72,35 @@ namespace Calculator.UnitTests
         [TestCase(2,4,ExpectedResult = 16)]
         public double Power_WhenCalled_ReturnsXRaisedToThePowerOfExp(double x, double exp)
         {
-            return Calculator.Power(x, exp);
+            return _uut.Power(x, exp);
         }
 
         //A much more time consuming way of testing the Multiply method
         [Test]
         public void Multiply_TwoPositiveInputs_ReturnsAPositiveNumber()
         {
-            var result = Calculator.Multiply(2, 2);
+            var result = _uut.Multiply(2, 2);
             Assert.That(result,Is.EqualTo(4));
         }
 
         [Test]
         public void Multiply_OnePositiveAndOneNegativeInput_ReturnsANegativeNumber()
         {
-            var result = Calculator.Multiply(-2, 2);
+            var result = _uut.Multiply(-2, 2);
             Assert.That(result, Is.EqualTo(-4));
         }
 
         [Test]
         public void Multiply_TwoNegativeInputs_ReturnsAPositiveNumber()
         {
-            var result = Calculator.Multiply(-2, -2);
+            var result = _uut.Multiply(-2, -2);
             Assert.That(result, Is.EqualTo(4));
         }
 
         [Test]
         public void Multiply_OneInputEqualsZero_ReturnsZero()
         {
-            var result = Calculator.Multiply(0, 2);
+            var result = _uut.Multiply(0, 2);
             Assert.That(result,Is.EqualTo(0));
         }
 
@@ -108,18 +108,20 @@ namespace Calculator.UnitTests
         [TestCase(1, ExpectedResult = -1)]
         public double Subtract_WhenCalledWithOneInput_StoresResultInAccumulator(double a)
         {
-            Calculator.Subtract(a);
-            return Calculator.Accumulator;
+            _uut.Subtract(a);
+            return _uut.Accumulator;
         }
 
         [Test]
         [TestCase(1, ExpectedResult = -3)]
+        [TestCase(3, ExpectedResult = -9)]
         public double Subtract_WhenCalledWithOneInputRepeatedly_StoresResultInAccumulator(double a)
         {
-            Calculator.Subtract(a);
-            Calculator.Subtract(a);
-            Calculator.Subtract(a);
-            return Calculator.Accumulator;
+            _uut.Subtract(a);
+            _uut.Subtract(a);
+            _uut.Subtract(a);
+            return _uut.Accumulator;
         }
+
     }
 }
