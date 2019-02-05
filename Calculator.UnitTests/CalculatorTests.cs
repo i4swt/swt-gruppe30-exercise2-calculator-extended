@@ -11,6 +11,7 @@ namespace Calculator.UnitTests
         [TestCase(-1,3, ExpectedResult = 2)]
         [TestCase(-100.1,300, ExpectedResult = 199.9)]
         [TestCase(0,0, ExpectedResult = 0)]
+        [TestCase(-1,-1, ExpectedResult = -2)]
         public double Add_WhenCalled_ReturnsTheSumOfTheTwoInputs(double a, double b)
         {
             return Calculator.Add(a, b);
