@@ -17,6 +17,31 @@ namespace Calculator.UnitTests
             return Calculator.Add(a, b);
         }
 
+        [Test]
+        [TestCase(1, ExpectedResult = 1)]
+        [TestCase(-1,  ExpectedResult = -1)]
+        [TestCase(-5, ExpectedResult = -5)]
+        public double Add_OverloadedSoAccumulatorReturnsSameAsAddInput_AccumulatorReturnsResult(double a)
+        {
+            Calculator.Clear();
+            Calculator.Add(a);
+            return Calculator.Accumulator;
+        }
+
+        [Test]
+        [TestCase(1, ExpectedResult = 2)]
+        [TestCase(2, ExpectedResult = 4)]
+        [TestCase(-5, ExpectedResult = -10)]
+        public double Add_AddsInputTwiceToTestAccumulation_ReturnsAccumulatedSum(double a)
+        {
+            Calculator.Clear();
+            Calculator.Add(a);
+            Calculator.Add(a);
+            return Calculator.Accumulator;
+        }
+
+
+
         //Another way of using [TestCase]
         [Test]
         [TestCase(1,2,-1)]
