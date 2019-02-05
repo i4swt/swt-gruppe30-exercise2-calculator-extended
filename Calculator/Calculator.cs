@@ -28,8 +28,8 @@ namespace Calculator
 
         public static double Add(double addend)
         {
-            Accumulator += Accumulator;
-            return addend + Accumulator;
+            Accumulator += addend;
+            return Accumulator;
         }
 
         public static void Clear()
